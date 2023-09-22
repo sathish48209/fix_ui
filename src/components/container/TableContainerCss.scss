@@ -8,10 +8,6 @@
     margin-bottom: 45px;
 
     .performance-filters-container {
-      .selected-filters-container {
-        padding-top: 32px;
-        color: black;
-      }
     }
 
     .table-container {
@@ -37,4 +33,8 @@
       }
     }
   }
+}
+
+header {
+  min-height: 4rem;
 }

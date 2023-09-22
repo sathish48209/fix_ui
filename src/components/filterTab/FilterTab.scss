@@ -1,39 +1,45 @@
 $primary-color: #000;
 $white: #fff;
 
-.dropdown-wrapper {
+.tab-header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 20px;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  border: 1px solid $primary-color;
+  border-bottom-width: 0;
+  border-right-width: 0;
+  cursor: pointer;
+  user-select: none;
+  &:last-child {
+    border-right-width: 1px;
+  }
 
-  .filter-label {
-    margin-left: 10px;
-    margin-right: 34px;
-    cursor: pointer;
+  &.dropdown-dark {
+    background-color: $primary-color;
+    color: $white;
+    border-color: $white;
   }
 }
 
-.dd-wrapper {
-  position: relative;
-  width: 337px;
-  font-size: 12px;
+// .dd-wrapper {
+//   position: relative;
+//   font-size: 12px;
 
-  .dd-trigger {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-    border: 1px solid $primary-color;
-    background-color: $white;
-    cursor: pointer;
+//   .dd-trigger {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-around;
+//     position: relative;
+//     border: 1px solid $primary-color;
+//     background-color: $white;
+//     cursor: pointer;
 
-    .dd-selected-value {
-      font-size: 20px;
-      padding: 22px 0px 22px 18px;
-    }
-  }
-}
+//     .dd-selected-value {
+//       font-size: 20px;
+//       // padding: 22px 0px 22px 18px;
+//     }
+//   }
+// }
 
 .dropdown-dark {
   .dd-wrapper {
@@ -44,9 +50,9 @@ $white: #fff;
   }
 }
 
-.expanded-border {
-  border-bottom: 1px solid $primary-color;
-}
+// .expanded-border {
+//   border-bottom: 1px solid $primary-color;
+// }
 
 .icon-stack-fund {
   font-size: 20px;

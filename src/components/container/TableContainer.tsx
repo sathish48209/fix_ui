@@ -76,18 +76,29 @@ const TableContainer: React.FC<TableContainerProps> = (props) => {
     console.log("filteredRows " + filteredRows);
   };
 
-  const newSetFilteredData = (newFilteredData: any[]) => {
-    setFilteredData(newFilteredData);
-  };
-
   console.log(filteredData, "FILTERED-DATA");
 
   return (
     <div className="aggregate-table">
+      <header>Company Logo</header>
+      <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit debitis
+        consequatur animi cupiditate at deserunt est incidunt voluptatem
+        deleniti dignissimos autem vel suscipit consequuntur magnam
+        exercitationem rerum tenetur officiis, qui excepturi? Maxime repellendus
+        accusamus sunt tempora soluta magni dolore impedit nobis blanditiis
+        sequi repellat facere, amet dolorum illum quia, fuga atque optio eaque
+        tenetur quod praesentium commodi maiores. Reprehenderit necessitatibus
+        incidunt alias expedita officia dolorem veniam deleniti placeat
+        temporibus optio! Sed eaque adipisci excepturi necessitatibus? Nihil
+        harum eos, earum doloremque vel quo quia perferendis numquam est fugit
+        expedita aliquam facilis recusandae, quos hic! Quam consectetur earum
+        neque aspernatur optio! Doloremque!
+      </div>
       <div className="filter-table-container">
         <FilterContainer
           authoredFilters={props.authoredFilters}
-          newSetFilteredData={newSetFilteredData}
+          setFilteredData={setFilteredData}
           initialData={initialData}
           setFilteredRows={handleSetFilteredData}
           autoFiltersPopulation={false}

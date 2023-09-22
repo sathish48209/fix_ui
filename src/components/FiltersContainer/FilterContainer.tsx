@@ -2,12 +2,13 @@ import FilterTab from "../filterTab/FilterTab";
 import FiltersColumn from "../filters/FilterFirstColumn";
 import React, { useState, useEffect } from "react";
 import "./FilterContainer.scss";
+import FilterPopup from "../container/filter-popup/FilterPopup";
 
 interface FilterContainerProps {
   authoredFilters: string[];
   filterTheme: string;
   initialData: any[];
-  newSetFilteredData: (newFilteredData: any[]) => void;
+  setFilteredData: (newFilteredData: any[]) => void;
   setFilteredRows: (filteredData: any[]) => void;
   autoFiltersPopulation: boolean;
 }
@@ -18,6 +19,7 @@ const FilterContainer: React.FC<FilterContainerProps> = (props) => {
   const [isFilterDataUpdated, setIsFilterDataUpdated] = useState(false);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [resultFilteredData, setResultFilteredData] = useState<any[]>([]);
+  const [isPopupOpen, setIspopupOpen] = useState(false);
 
   useEffect(() => {
     updateFilteredData();
@@ -58,18 +60,47 @@ const FilterContainer: React.FC<FilterContainerProps> = (props) => {
     setSelectedFilters([]);
     props.setFilteredRows(props.initialData);
     setFilteredData(props.initialData);
-    props.newSetFilteredData(props.initialData);
+    props.setFilteredData(props.initialData);
+  };
+
+  const handleClosePopup = () => {
+    setIspopupOpen(false);
+  };
+
+  const handleOpenPopup = () => {
+    setIspopupOpen(true);
   };
 
   return (
     <div className="performance-filters-container">
       <div className="filters-wrapper">
-        <div className="dropdown-wrapper expanded-border">
-          <FilterTab toggleState={isListOpen} onClick={toggleFilters} />
-          <span className="filter-label" onClick={resetFilters}>
-            Reset Filters
-          </span>
+        <div className="dropdown-wrapper">
+          <span className="filter-label">Filter</span>
+          <div className="tab-headers-section">
+            <FilterTab toggleState={isListOpen} onClick={toggleFilters} />
+            <FilterTab toggleState={isListOpen} onClick={toggleFilters} />
+          </div>
+          <div className="reset-filter-label">
+            <span>I</span>
+            <span onClick={resetFilters}>Reset Filters</span>
+          </div>
+          <div className="filter-icon-container">
+            <div>Items Count</div>
+            <div className="filter-icon" onClick={handleOpenPopup}>
+              <span>F</span>
+            </div>
+          </div>
         </div>
+
+        {/* POPUP SECTION START */}
+        {isPopupOpen && (
+          <FilterPopup
+            filterData={props.authoredFilters}
+            handleClosePopup={handleClosePopup}
+          />
+        )}
+        {/* POPUP SECTION END */}
+
         <div
           className="selection-container"
           style={isListOpen ? { display: "" } : { display: "none" }}
@@ -84,14 +115,14 @@ const FilterContainer: React.FC<FilterContainerProps> = (props) => {
             isFilterUpdated={isFilterDataUpdated}
             toggleFilters={toggleFilters}
             resultFilteredData={resultFilteredData}
-            newSetFilteredData={props.newSetFilteredData}
+            setFilteredData={props.setFilteredData}
             updateFilteredData={updateFilteredData}
           />
         </div>
-      </div>
-      <div className="selected-filters-container px18">
-        <b>{resultFilteredData.length} items</b> All Series | All Topics | All
-        Asset class | All Format
+        <div className="filtered-items-count">
+          <b>{resultFilteredData.length} items</b> All Series | All Topics | All
+          Asset class | All Format
+        </div>
       </div>
     </div>
   );

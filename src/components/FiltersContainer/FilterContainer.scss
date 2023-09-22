@@ -1,8 +1,65 @@
-// .filters-wrapper{
-//     .mam-button.theme-blue {
-//       background-color: skyblue;
-//     }
-//     .mam-button.theme-green {
-//       background-color: #007859;
-//     }
-//   }
+$primary-color: #000;
+
+.filters-wrapper {
+  margin-top: 2rem;
+  .dropdown-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    min-height: 3rem;
+    border-bottom: 1px solid $primary-color;
+
+    .tab-headers-section {
+      display: flex;
+    }
+
+    .filter-label {
+      padding: 0 4rem 0 2rem;
+    }
+
+    .reset-filter-label {
+      display: flex;
+      gap: 1rem;
+      margin-left: 4rem;
+      cursor: pointer;
+    }
+
+    .filter-icon-container {
+      display: none;
+      margin-left: auto;
+      align-items: center;
+      gap: 1rem;
+      .filter-icon {
+        padding: 1rem;
+        border: 1px solid #000;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .tab-headers-section {
+        display: none;
+      }
+      .reset-filter-label {
+        display: none;
+      }
+      .filter-icon-container {
+        display: flex;
+      }
+    }
+  }
+
+  .filtered-items-count {
+    margin: 1rem;
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+}
+
+header {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}

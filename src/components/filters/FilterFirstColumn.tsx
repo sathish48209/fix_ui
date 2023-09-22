@@ -10,7 +10,7 @@ interface FiltersColumnProps {
   filterTheme: string;
   isFilterUpdated: boolean;
   toggleFilters: () => void;
-  newSetFilteredData: (newFilteredData: any[]) => void;
+  setFilteredData: (newFilteredData: any[]) => void;
   updateFilteredData: () => void;
   containerState: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -21,7 +21,7 @@ const FiltersColumn: React.FC<FiltersColumnProps> = ({
   filterData,
   selectedFilters,
   filterTheme,
-  newSetFilteredData,
+  setFilteredData,
   resultFilteredData,
   isFilterUpdated,
   toggleFilters,
@@ -47,8 +47,9 @@ const FiltersColumn: React.FC<FiltersColumnProps> = ({
                 onClick={(e: any) => containerState(e)}
                 value={item}
                 checked={selectedFilters.includes(item)}
+                id={`option-${i}-${item}`}
               />
-              <label>{item}</label>
+              <label htmlFor={`option-${i}-${item}`}>{item}</label>
             </li>
           ))}
         </ul>
@@ -59,7 +60,7 @@ const FiltersColumn: React.FC<FiltersColumnProps> = ({
           onClick={() => {
             toggleFilters();
             updateFilteredData();
-            newSetFilteredData(resultFilteredData);
+            setFilteredData(resultFilteredData);
           }}
           disabled={selectedFilters.length == 0}
         >
