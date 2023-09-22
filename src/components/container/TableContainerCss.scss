@@ -1,0 +1,40 @@
+.aggregate-table {
+  display: flex;
+  flex-direction: column;
+
+  .filter-table-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 45px;
+
+    .performance-filters-container {
+      .selected-filters-container {
+        padding-top: 32px;
+        color: black;
+      }
+    }
+
+    .table-container {
+      margin-top: 15px;
+    }
+
+    .px18 {
+      font-size: 1.125em;
+    }
+
+    .px16 {
+      font-size: 1em;
+    }
+
+    .cap {
+      text-transform: capitalize;
+    }
+
+    .dropdown-wrapper {
+      .filter-label {
+        margin-left: 10px;
+        margin-right: 34px;
+      }
+    }
+  }
+}
