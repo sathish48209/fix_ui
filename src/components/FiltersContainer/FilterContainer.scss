@@ -49,6 +49,13 @@ $primary-color: #000;
     }
   }
 
+  .selection-container {
+    display: none;
+    @media (min-width: 600px) {
+      display: block;
+    }
+  }
+
   .filtered-items-count {
     margin: 1rem;
     @media (max-width: 600px) {

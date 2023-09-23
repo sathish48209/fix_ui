@@ -78,7 +78,7 @@ const FilterContainer: React.FC<FilterContainerProps> = (props) => {
           <span className="filter-label">Filter</span>
           <div className="tab-headers-section">
             <FilterTab toggleState={isListOpen} onClick={toggleFilters} />
-            <FilterTab toggleState={isListOpen} onClick={toggleFilters} />
+            <FilterTab toggleState={false} onClick={toggleFilters} />
           </div>
           <div className="reset-filter-label">
             <span>I</span>
@@ -101,24 +101,23 @@ const FilterContainer: React.FC<FilterContainerProps> = (props) => {
         )}
         {/* POPUP SECTION END */}
 
-        <div
-          className="selection-container"
-          style={isListOpen ? { display: "" } : { display: "none" }}
-        >
-          <FiltersColumn
-            filterData={props.authoredFilters}
-            selectedFilters={selectedFilters}
-            containerState={handleFilterChange}
-            autoFiltersPopulation={props.autoFiltersPopulation}
-            initialData={props.initialData}
-            filterTheme={props.filterTheme}
-            isFilterUpdated={isFilterDataUpdated}
-            toggleFilters={toggleFilters}
-            resultFilteredData={resultFilteredData}
-            setFilteredData={props.setFilteredData}
-            updateFilteredData={updateFilteredData}
-          />
-        </div>
+        {isListOpen && (
+          <div className="selection-container">
+            <FiltersColumn
+              filterData={props.authoredFilters}
+              selectedFilters={selectedFilters}
+              containerState={handleFilterChange}
+              autoFiltersPopulation={props.autoFiltersPopulation}
+              initialData={props.initialData}
+              filterTheme={props.filterTheme}
+              isFilterUpdated={isFilterDataUpdated}
+              toggleFilters={toggleFilters}
+              resultFilteredData={resultFilteredData}
+              setFilteredData={props.setFilteredData}
+              updateFilteredData={updateFilteredData}
+            />
+          </div>
+        )}
         <div className="filtered-items-count">
           <b>{resultFilteredData.length} items</b> All Series | All Topics | All
           Asset class | All Format
