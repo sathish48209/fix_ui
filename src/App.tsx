@@ -1,24 +1,13 @@
 import React from "react";
 import "./App.css";
 import TableContainer from "./components/container/TableContainer";
+import ViewItemsContainer from "./components/ViewItemsContainer";
 
 function App() {
   return (
     <>
       <div data-component="optimum-aggregate-table-components">
-        <TableContainer
-          authoredFilters={[
-            "Equities",
-            "Fixed income and cash",
-            "Optimum",
-            "Macquire",
-            "Funds",
-            "shares",
-            "quotes",
-            "emamtf",
-          ]}
-          filterTheme="theme-green"
-        />
+        <ViewItemsContainer />
       </div>
     </>
   );
