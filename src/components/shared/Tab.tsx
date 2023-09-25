@@ -9,7 +9,7 @@ const Tab: React.FC<{
   return (
     <div
       className={`tab-container ${expanded ? "expanded" : ""}`}
-      onClick={() => handleTabChange(tabDetails.aggregateTableTitle)}
+      onClick={() => handleTabChange(tabDetails.aggregateTableKey)}
     >
       <span className="tab-label">{tabDetails.aggregateTableTitle}</span>
       <span>I</span>

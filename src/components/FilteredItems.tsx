@@ -56,23 +56,18 @@ const FilteredItems: React.FC<{
       }}
     >
       <table>
-        <tr>{mapTableColumns()}</tr>
+        <tr>
+          <td>Account Group</td>
+          <td>Account name</td>
+          <td>APIR Code</td>
+        </tr>
         {data.map((val) => {
           return (
             <>
               <tr>
                 <td>{val.accountGroup}</td>
                 <td>{val.accountName}</td>
-                <td>{val.view}</td>
                 <td>{val.apirCode}</td>
-                <td>{val.asOfDate}</td>
-                <td>{val["1m"]}</td>
-                <td>{val["3m"]}</td>
-                <td>{val["6m"]}</td>
-                <td>{val["1y"]}</td>
-                <td>{val["3y"]}</td>
-                <td>{val["5y"]}</td>
-                <td>{val.since_inception}</td>
               </tr>
             </>
           );

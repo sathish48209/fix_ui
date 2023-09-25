@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FilterDetails, FilterModel } from "../../types/Filters";
+import { DataModel, FilterDetails, FilterModel } from "../../types/Filters";
 import Tab from "./Tab";
 import "../styles/Tabset.scss";
+import FilterPopup from "../filter-popup/FilterPopup";
 
 const Tabset: React.FC<{
   filterDetails: FilterDetails;
@@ -11,23 +12,26 @@ const Tabset: React.FC<{
   >;
   handleViewResults: () => void;
   handleResetFilters: () => void;
+  itemsCount: number;
 }> = ({
   filterDetails,
   filtersApplied,
   setFiltersApplied,
   handleViewResults,
   handleResetFilters,
+  itemsCount,
 }) => {
   const [currentFilterTab, setCurrentFilterTab] = useState<FilterModel>();
+  const [isPopupOpen, setIspopupOpen] = useState(false);
 
   const handleTabChange = (tabName: string) => {
     const matchedFilterModel = filterDetails.filterModel.find(
-      (model) => model.aggregateTableTitle === tabName
+      (model) => model.aggregateTableKey === tabName
     );
     if (matchedFilterModel) {
       if (
-        matchedFilterModel.aggregateTableTitle ===
-        currentFilterTab?.aggregateTableTitle
+        matchedFilterModel.aggregateTableKey ===
+        currentFilterTab?.aggregateTableKey
       ) {
         setCurrentFilterTab(undefined);
       } else {
@@ -78,6 +82,14 @@ const Tabset: React.FC<{
     }
   };
 
+  const handleClosePopup = () => {
+    setIspopupOpen(false);
+  };
+
+  const handleOpenPopup = () => {
+    setIspopupOpen(true);
+  };
+
   return (
     <>
       <div className="filters-container">
@@ -101,7 +113,32 @@ const Tabset: React.FC<{
           <span>I</span>
           <span>Reset Filters</span>
         </div>
+
+        <div className="items-count">
+          <span>
+            <strong>{itemsCount}</strong> Items
+          </span>
+          <div className="filter-icon" onClick={handleOpenPopup}>
+            <span>F</span>
+          </div>
+        </div>
       </div>
+
+      {/* POPUP SECTION START */}
+      {isPopupOpen && (
+        <FilterPopup
+          filterDetails={filterDetails}
+          filtersApplied={filtersApplied}
+          handleClosePopup={handleClosePopup}
+          handleViewResults={handleViewResults}
+          handleResetFilters={handleResetFilters}
+          itemsCount={itemsCount}
+          handleCheckboxToggle={handleCheckboxToggle}
+          currentFilterTab={currentFilterTab as FilterModel}
+          handleTabChange={handleTabChange}
+        />
+      )}
+      {/* POPUP SECTION END */}
 
       {currentFilterTab && (
         <div className="tab-panel">

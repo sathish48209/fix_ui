@@ -1,0 +1,125 @@
+$white: #fff;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $white;
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+    padding-left: 2rem;
+    font-size: 1.1rem;
+
+    .details {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 1rem;
+
+      .close-icon {
+        border-left: 2px solid #ccc;
+        padding: 1rem;
+      }
+    }
+    border-bottom: 2px solid #ccc;
+  }
+
+  .accordion-section {
+    flex-grow: 1;
+    overflow: scroll;
+
+    .accordion {
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+      .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+
+      .accordion-body {
+        margin-top: 1rem;
+        display: none;
+        &.open {
+          display: block;
+        }
+        .filter-checkbox {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 0.5rem 0;
+
+          & > label {
+            margin-top: 10px;
+          }
+
+          input[type="checkbox"] {
+            position: relative;
+            cursor: pointer;
+          }
+          input[type="checkbox"]:before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+          }
+          input[type="checkbox"]:checked:before {
+            //TODO" have to remove this hardcoded logic
+            background-color: #007859;
+          }
+
+          input[type="checkbox"]:checked:after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid black;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 2px;
+            left: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .popup-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #ccc;
+    padding: 0.75rem;
+    padding-right: 2rem;
+
+    .btn {
+      padding: 0.5rem 2rem;
+      border: 1px solid #000;
+      cursor: pointer;
+      border-radius: 0.5rem;
+    }
+  }
+
+  @media (min-width: 600px) {
+    display: none;
+  }
+}

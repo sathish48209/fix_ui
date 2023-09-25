@@ -38,6 +38,35 @@
     padding: 1.5rem;
     cursor: pointer;
   }
+
+  .items-count {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+
+    .filter-icon {
+      padding: 0.8rem 1.2rem;
+      border: 1px solid #000;
+      border-bottom-width: 0;
+      border-right-width: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .filter-label {
+      padding: 1rem;
+    }
+    .reset-filter {
+      display: none;
+    }
+    .tabs-container {
+      display: none;
+    }
+    .items-count {
+      display: flex;
+    }
+  }
 }
 
 .tab-panel {
@@ -111,5 +140,11 @@
       pointer-events: none;
       opacity: 0.4;
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .tab-panel {
+    display: none;
   }
 }

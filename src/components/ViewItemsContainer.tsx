@@ -94,6 +94,7 @@ const ViewItemsContainer = () => {
         setFiltersApplied={setFiltersApplied}
         handleViewResults={handleViewResults}
         handleResetFilters={handleResetFilters}
+        itemsCount={filteredDataModel.length}
       />
       <div className="filters-info">{filteredDataModel.length} Items</div>
       <FilteredItems data={filteredDataModel} />
