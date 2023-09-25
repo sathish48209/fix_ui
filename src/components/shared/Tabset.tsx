@@ -58,12 +58,20 @@ const Tabset: React.FC<{
           };
         }
       } else {
-        updatedFiltersApplied = {
-          ...updatedFiltersApplied,
-          [currentFilterTab.aggregateTableKey]: updatedFiltersApplied[
-            currentFilterTab.aggregateTableKey
-          ].filter((filter) => filter !== filterKey),
-        };
+        const updatedFilters = updatedFiltersApplied[
+          currentFilterTab.aggregateTableKey
+        ].filter((filter) => filter !== filterKey);
+
+        if (updatedFilters.length === 0) {
+          delete updatedFiltersApplied[currentFilterTab.aggregateTableKey];
+        } else {
+          updatedFiltersApplied = {
+            ...updatedFiltersApplied,
+            [currentFilterTab.aggregateTableKey]: updatedFiltersApplied[
+              currentFilterTab.aggregateTableKey
+            ].filter((filter) => filter !== filterKey),
+          };
+        }
       }
 
       setFiltersApplied(updatedFiltersApplied);

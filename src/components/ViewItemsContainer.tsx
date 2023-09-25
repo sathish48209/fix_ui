@@ -3,6 +3,7 @@ import { DataModel, FilterDetails, FilterModel } from "../types/Filters";
 import { DATA_MODELS, FILTER_DETAILS } from "../mocks/FilterDetails";
 import FilteredItems from "./FilteredItems";
 import Tabset from "./shared/Tabset";
+import "./styles/ViewItemsContainer.scss";
 
 const ViewItemsContainer = () => {
   const [dataModel, setDataModel] = useState<DataModel[]>([]);
@@ -48,8 +49,17 @@ const ViewItemsContainer = () => {
   }, [dataModel]);
 
   const handleViewResults = () => {
+    const hasFilters = Object.entries(filtersApplied).some(
+      ([key, value]) => value.length > 0
+    );
+
+    if (!hasFilters) {
+      setFilteredDataModel([...dataModel]);
+      return;
+    }
+
     const filteredData = dataModel.filter((data) => {
-      Object.entries(filtersApplied).every(([key, value]) =>
+      return Object.entries(filtersApplied).every(([key, value]) =>
         value.includes(data[key as keyof DataModel])
       );
     });
@@ -85,6 +95,7 @@ const ViewItemsContainer = () => {
         handleViewResults={handleViewResults}
         handleResetFilters={handleResetFilters}
       />
+      <div className="filters-info">{filteredDataModel.length} Items</div>
       <FilteredItems data={filteredDataModel} />
     </>
   );
