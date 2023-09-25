@@ -1,0 +1,115 @@
+.filters-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #888;
+
+  .filter-label {
+    padding: 1.5rem;
+    margin-right: 3rem;
+  }
+
+  .tabs-container {
+    display: flex;
+    .tab-container {
+      display: flex;
+      gap: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #888;
+      border-bottom-width: 0;
+      cursor: pointer;
+      user-select: none;
+
+      &.expanded {
+        background-color: #000;
+        color: #fff;
+      }
+
+      &:last-child {
+        border-left-width: 0;
+        margin-right: 3rem;
+      }
+    }
+  }
+
+  .reset-filter {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.tab-panel {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+  min-height: 5rem;
+
+  .view-option {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    // input[type="checkbox"] {
+    //   background-color: red;
+    //   margin: 0;
+    //   border-radius: 0;
+    // }
+
+    .label {
+      margin-top: 6px;
+      text-transform: capitalize;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    input[type="checkbox"] {
+      position: relative;
+      cursor: pointer;
+    }
+    input[type="checkbox"]:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 0;
+      left: 0;
+      background-color: white;
+    }
+    input[type="checkbox"]:checked:before {
+      //TODO" have to remove this hardcoded logic
+      background-color: #007859;
+    }
+
+    input[type="checkbox"]:checked:after {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 10px;
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      position: absolute;
+      top: 2px;
+      left: 6px;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    margin: 1rem;
+    padding: 1rem 3rem;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    user-select: none;
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.4;
+    }
+  }
+}

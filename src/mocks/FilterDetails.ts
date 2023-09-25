@@ -77,4 +77,18 @@ export const DATA_MODELS: DataModel[] = [
     "5y": "0.01",
     since_inception: "0.04",
   },
+  {
+    accountGroup: "Funds",
+    accountName: "Macquarie Income Opportunities Fund",
+    view: "",
+    apirCode: "MAQ0277AU",
+    asOfDate: "30 June 2020",
+    "1m": "-0.05",
+    "3m": "-0.06",
+    "6m": "0.01",
+    "1y": "0.03",
+    "3y": "0.06",
+    "5y": "0.01",
+    since_inception: "0.04",
+  },
 ];
