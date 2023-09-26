@@ -13,11 +13,13 @@ const ViewItemsContainer = () => {
   const [filtersApplied, setFiltersApplied] = useState<
     Record<string, string[]>
   >({});
+  const [itemsCount, setItemsCount] = useState(0);
 
   useEffect(() => {
     //TODO: Make the actual API request to fetch the data models
     setDataModel(DATA_MODELS);
     setFilteredDataModel(DATA_MODELS);
+    setItemsCount(DATA_MODELS.length);
   }, []);
 
   // To handle the Auto Filter population logic
@@ -47,6 +49,24 @@ const ViewItemsContainer = () => {
       filterModel: filterModels,
     });
   }, [dataModel]);
+
+  useEffect(() => {
+    const hasFilters = Object.entries(filtersApplied).some(
+      ([key, value]) => value.length > 0
+    );
+
+    if (!hasFilters) {
+      setItemsCount(dataModel.length);
+      return;
+    }
+
+    const filteredItemsCount = dataModel.filter((data) => {
+      return Object.entries(filtersApplied).every(([key, value]) =>
+        value.includes(data[key as keyof DataModel])
+      );
+    }).length;
+    setItemsCount(filteredItemsCount);
+  }, [filtersApplied]);
 
   const handleViewResults = () => {
     const hasFilters = Object.entries(filtersApplied).some(
@@ -94,7 +114,7 @@ const ViewItemsContainer = () => {
         setFiltersApplied={setFiltersApplied}
         handleViewResults={handleViewResults}
         handleResetFilters={handleResetFilters}
-        itemsCount={filteredDataModel.length}
+        itemsCount={itemsCount}
       />
       <div className="filters-info">{filteredDataModel.length} Items</div>
       <FilteredItems data={filteredDataModel} />

@@ -98,10 +98,23 @@ const FilterPopup: React.FC<{
         ))}
       </div>
       <div className="popup-actions">
-        <div className="btn" onClick={handleViewResults}>
+        <div
+          className="btn"
+          onClick={() => {
+            handleViewResults();
+            handleClosePopup();
+          }}
+        >
           View Results
         </div>
-        <div onClick={handleResetFilters}>Reset Filters</div>
+        <div
+          onClick={() => {
+            handleResetFilters();
+            handleClosePopup();
+          }}
+        >
+          Reset Filters
+        </div>
       </div>
     </div>
   );
