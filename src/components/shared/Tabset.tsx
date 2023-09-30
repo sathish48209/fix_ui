@@ -92,37 +92,39 @@ const Tabset: React.FC<{
 
   return (
     <>
-      <div className="filters-container">
-        <div className="filter-label">Filter</div>
-        <div className="tabs-container">
-          {filterDetails.filterModel.map((filter, idx) => {
-            return (
-              <Tab
-                tabDetails={filter}
-                expanded={
-                  filter.aggregateTableTitle ===
-                  currentFilterTab?.aggregateTableTitle
-                }
-                handleTabChange={handleTabChange}
-                key={filter.aggregateTableKey}
-              />
-            );
-          })}
-        </div>
-        <div className="reset-filter" onClick={handleResetFilters}>
-          <span>I</span>
-          <span>Reset Filters</span>
-        </div>
+      {!isPopupOpen && (
+        <div className="filters-container">
+          <div className="filter-label">Filter</div>
+          <div className="tabs-container">
+            {filterDetails.filterModel.map((filter, idx) => {
+              return (
+                <Tab
+                  tabDetails={filter}
+                  expanded={
+                    filter.aggregateTableTitle ===
+                    currentFilterTab?.aggregateTableTitle
+                  }
+                  handleTabChange={handleTabChange}
+                  key={filter.aggregateTableKey}
+                />
+              );
+            })}
+          </div>
+          <div className="reset-filter" onClick={handleResetFilters}>
+            <span>I</span>
+            <span>Reset Filters</span>
+          </div>
 
-        <div className="items-count">
-          <span>
-            <strong>{itemsCount}</strong> Items
-          </span>
-          <div className="filter-icon" onClick={handleOpenPopup}>
-            <span>F</span>
+          <div className="items-count">
+            <span>
+              <strong>{itemsCount}</strong> Items
+            </span>
+            <div className="filter-icon" onClick={handleOpenPopup}>
+              <span>F</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* POPUP SECTION START */}
       {isPopupOpen && (
