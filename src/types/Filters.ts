@@ -1,13 +1,6 @@
-export type FilterDetails = {
-  filterTheme: string;
-  filterModel: FilterModel[];
-  placeholder: string;
-  url: string;
-};
-
 export type FilterModel = {
   aggregateTableTitle: string;
-  filters: string[];
+  filters?: string[];
   aggregateTableKey: string;
   autoFiltersPopulation: boolean;
 };

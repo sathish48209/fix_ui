@@ -1,24 +1,17 @@
-import { DataModel, FilterDetails } from "../types/Filters";
+import { DataModel, FilterModel } from "../types/Filters";
 
-export const FILTER_DETAILS: FilterDetails = {
-  filterTheme: "theme-green",
-  filterModel: [
-    {
-      aggregateTableTitle: "Asset Class",
-      filters: ["shares", "stocks"],
-      aggregateTableKey: "accountGroup",
-      autoFiltersPopulation: true,
-    },
-    {
-      aggregateTableTitle: "Asset Name",
-      filters: ["liquidity", "funds"],
-      aggregateTableKey: "accountName",
-      autoFiltersPopulation: true,
-    },
-  ],
-  placeholder: "test-search",
-  url: "/content/dam/macq/site-wide-assets/AggregateTable.json",
-};
+export const FILTER_DETAILS: FilterModel[] = [
+  {
+    aggregateTableTitle: "Asset Class",
+    aggregateTableKey: "accountGroup",
+    autoFiltersPopulation: true,
+  },
+  {
+    aggregateTableTitle: "Asset Name",
+    aggregateTableKey: "accountName",
+    autoFiltersPopulation: true,
+  },
+];
 
 export const DATA_MODELS: DataModel[] = [
   {

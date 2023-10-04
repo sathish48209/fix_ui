@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { DataModel, FilterDetails, FilterModel } from "../../types/Filters";
+import { DataModel, FilterModel } from "../../types/Filters";
 import Tab from "./Tab";
 import "../styles/Tabset.scss";
 import FilterPopup from "../filter-popup/FilterPopup";
 
 const Tabset: React.FC<{
-  filterDetails: FilterDetails;
+  filterDetails: FilterModel[];
   filtersApplied: Record<string, string[]>;
   setFiltersApplied: React.Dispatch<
     React.SetStateAction<Record<string, string[]>>
@@ -25,7 +25,7 @@ const Tabset: React.FC<{
   const [isPopupOpen, setIspopupOpen] = useState(false);
 
   const handleTabChange = (tabName: string) => {
-    const matchedFilterModel = filterDetails.filterModel.find(
+    const matchedFilterModel = filterDetails.find(
       (model) => model.aggregateTableKey === tabName
     );
     if (matchedFilterModel) {
@@ -96,7 +96,7 @@ const Tabset: React.FC<{
         <div className="filters-container">
           <div className="filter-label">Filter</div>
           <div className="tabs-container">
-            {filterDetails.filterModel.map((filter, idx) => {
+            {filterDetails.map((filter, idx) => {
               return (
                 <Tab
                   tabDetails={filter}
@@ -144,23 +144,26 @@ const Tabset: React.FC<{
 
       {currentFilterTab && (
         <div className="tab-panel">
-          {currentFilterTab.filters.map((filter) => (
-            <div className="view-option" key={filter}>
-              <input
-                type="checkbox"
-                id={filter}
-                checked={
-                  filtersApplied?.[
-                    currentFilterTab.aggregateTableKey
-                  ]?.includes(filter) ?? false
-                }
-                onChange={(e) => handleCheckboxToggle(filter, e.target.checked)}
-              />
-              <label className="label" htmlFor={filter}>
-                {filter}
-              </label>
-            </div>
-          ))}
+          {currentFilterTab?.filters?.length &&
+            currentFilterTab.filters.map((filter) => (
+              <div className="view-option" key={filter}>
+                <input
+                  type="checkbox"
+                  id={filter}
+                  checked={
+                    filtersApplied?.[
+                      currentFilterTab.aggregateTableKey
+                    ]?.includes(filter) ?? false
+                  }
+                  onChange={(e) =>
+                    handleCheckboxToggle(filter, e.target.checked)
+                  }
+                />
+                <label className="label" htmlFor={filter}>
+                  {filter}
+                </label>
+              </div>
+            ))}
           <div className="btn" onClick={handleViewResults}>
             View Results
           </div>

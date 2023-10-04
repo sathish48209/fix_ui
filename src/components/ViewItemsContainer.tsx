@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DataModel, FilterDetails, FilterModel } from "../types/Filters";
+import { DataModel, FilterModel } from "../types/Filters";
 import { DATA_MODELS, FILTER_DETAILS } from "../mocks/FilterDetails";
 import FilteredItems from "./FilteredItems";
 import Tabset from "./shared/Tabset";
@@ -9,7 +9,7 @@ const ViewItemsContainer = () => {
   const [dataModel, setDataModel] = useState<DataModel[]>([]);
   const [filteredDataModel, setFilteredDataModel] = useState<DataModel[]>([]);
   const [filterDetails, setFilterDetails] =
-    useState<FilterDetails>(FILTER_DETAILS);
+    useState<FilterModel[]>(FILTER_DETAILS);
   const [filtersApplied, setFiltersApplied] = useState<
     Record<string, string[]>
   >({});
@@ -25,18 +25,15 @@ const ViewItemsContainer = () => {
   // To handle the Auto Filter population logic
   // Once the Data Model loads, check for Auto population field and update the filter
   useEffect(() => {
-    const filterModels = filterDetails.filterModel.map((model: FilterModel) => {
-      let filters = [...model.filters];
-      if (model.autoFiltersPopulation) {
-        filters = [];
-        dataModel.forEach((data) => {
-          const value = data[model.aggregateTableKey as keyof DataModel];
-          // To avoid duplicate entires being pushed to filters
-          if (!filters.includes(value)) {
-            filters.push(value);
-          }
-        });
-      }
+    const filterModels = filterDetails.map((model: FilterModel) => {
+      let filters: string[] = [];
+      dataModel.forEach((data) => {
+        const value = data[model.aggregateTableKey as keyof DataModel];
+        // To avoid duplicate entires being pushed to filters
+        if (!filters.includes(value)) {
+          filters.push(value);
+        }
+      });
 
       return {
         ...model,
@@ -44,10 +41,7 @@ const ViewItemsContainer = () => {
       };
     });
 
-    setFilterDetails({
-      ...filterDetails,
-      filterModel: filterModels,
-    });
+    setFilterDetails([...filterModels]);
   }, [dataModel]);
 
   useEffect(() => {

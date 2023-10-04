@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./FilterPopup.scss";
-import { FilterDetails, FilterModel } from "../../types/Filters";
+import { FilterModel } from "../../types/Filters";
 
 const FilterPopup: React.FC<{
-  filterDetails: FilterDetails;
+  filterDetails: FilterModel[];
   handleClosePopup: () => void;
   handleViewResults: () => void;
   handleResetFilters: () => void;
@@ -53,7 +53,7 @@ const FilterPopup: React.FC<{
       </div>
 
       <div className="accordion-section">
-        {filterDetails.filterModel.map((filterModel) => (
+        {filterDetails.map((filterModel) => (
           <div className="accordion" key={filterModel.aggregateTableKey}>
             <div
               className="accordion-header"
@@ -73,25 +73,26 @@ const FilterPopup: React.FC<{
               }`}
             >
               <div>
-                {filterModel.filters.map((filter) => {
-                  return (
-                    <div key={filter} className="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        id={filter}
-                        checked={
-                          filtersApplied?.[
-                            currentFilterTab?.aggregateTableKey
-                          ]?.includes(filter) ?? false
-                        }
-                        onChange={(e) =>
-                          handleCheckboxToggle(filter, e.target.checked)
-                        }
-                      />
-                      <label htmlFor={filter}>{filter}</label>
-                    </div>
-                  );
-                })}
+                {filterModel.filters?.length &&
+                  filterModel.filters.map((filter) => {
+                    return (
+                      <div key={filter} className="filter-checkbox">
+                        <input
+                          type="checkbox"
+                          id={filter}
+                          checked={
+                            filtersApplied?.[
+                              currentFilterTab?.aggregateTableKey
+                            ]?.includes(filter) ?? false
+                          }
+                          onChange={(e) =>
+                            handleCheckboxToggle(filter, e.target.checked)
+                          }
+                        />
+                        <label htmlFor={filter}>{filter}</label>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
