@@ -164,7 +164,13 @@ const Tabset: React.FC<{
                 </label>
               </div>
             ))}
-          <div className="btn" onClick={handleViewResults}>
+          <div
+            className="btn"
+            onClick={() => {
+              setCurrentFilterTab(undefined);
+              handleViewResults();
+            }}
+          >
             View Results
           </div>
         </div>
