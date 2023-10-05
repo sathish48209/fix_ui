@@ -75,56 +75,62 @@
   padding: 2rem;
   min-height: 5rem;
 
-  .view-option {
+  .view-options-container {
     display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 1rem;
-    // input[type="checkbox"] {
-    //   background-color: red;
-    //   margin: 0;
-    //   border-radius: 0;
-    // }
+    width: 100%;
+    flex-wrap: wrap;
+    .view-option {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem;
+      flex-basis: 35%;
+      // input[type="checkbox"] {
+      //   background-color: red;
+      //   margin: 0;
+      //   border-radius: 0;
+      // }
 
-    .label {
-      margin-top: 6px;
-      text-transform: capitalize;
-      cursor: pointer;
-      user-select: none;
-    }
+      .label {
+        margin-top: 6px;
+        text-transform: capitalize;
+        cursor: pointer;
+        user-select: none;
+      }
 
-    input[type="checkbox"] {
-      position: relative;
-      cursor: pointer;
-    }
-    input[type="checkbox"]:before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: 0;
-      left: 0;
-      background-color: white;
-    }
-    input[type="checkbox"]:checked:before {
-      //TODO" have to remove this hardcoded logic
-      background-color: #007859;
-    }
+      input[type="checkbox"] {
+        position: relative;
+        cursor: pointer;
+      }
+      input[type="checkbox"]:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        background-color: white;
+      }
+      input[type="checkbox"]:checked:before {
+        //TODO" have to remove this hardcoded logic
+        background-color: #007859;
+      }
 
-    input[type="checkbox"]:checked:after {
-      content: "";
-      display: block;
-      width: 5px;
-      height: 10px;
-      border: solid black;
-      border-width: 0 2px 2px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-      position: absolute;
-      top: 2px;
-      left: 6px;
+      input[type="checkbox"]:checked:after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 2px;
+        left: 6px;
+      }
     }
   }
 

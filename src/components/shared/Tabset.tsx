@@ -144,26 +144,28 @@ const Tabset: React.FC<{
 
       {currentFilterTab && (
         <div className="tab-panel">
-          {currentFilterTab?.filters?.length &&
-            currentFilterTab.filters.map((filter) => (
-              <div className="view-option" key={filter}>
-                <input
-                  type="checkbox"
-                  id={filter}
-                  checked={
-                    filtersApplied?.[
-                      currentFilterTab.aggregateTableKey
-                    ]?.includes(filter) ?? false
-                  }
-                  onChange={(e) =>
-                    handleCheckboxToggle(filter, e.target.checked)
-                  }
-                />
-                <label className="label" htmlFor={filter}>
-                  {filter}
-                </label>
-              </div>
-            ))}
+          <div className="view-options-container">
+            {currentFilterTab?.filters?.length &&
+              currentFilterTab.filters.map((filter) => (
+                <div className="view-option" key={filter}>
+                  <input
+                    type="checkbox"
+                    id={filter}
+                    checked={
+                      filtersApplied?.[
+                        currentFilterTab.aggregateTableKey
+                      ]?.includes(filter) ?? false
+                    }
+                    onChange={(e) =>
+                      handleCheckboxToggle(filter, e.target.checked)
+                    }
+                  />
+                  <label className="label" htmlFor={filter}>
+                    {filter}
+                  </label>
+                </div>
+              ))}
+          </div>
           <div
             className="btn"
             onClick={() => {
